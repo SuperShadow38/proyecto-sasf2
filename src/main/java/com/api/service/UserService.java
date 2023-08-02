@@ -15,22 +15,18 @@ public class UserService {
 
     }
 
-    //obtener todos los usuarios
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    //obtener usuario por id 
     public User getUserId(Long id){
         return userRepository.findById(id).orElse(null) ;
     }
 
-    //metodo guardar usuario 
     public User  saveUser(User user){
         return userRepository.save(user);
     }
 
-    //metodo eliminar usuario por id
     public void deletUser(Long id){
          userRepository.deleteById(id);
     }

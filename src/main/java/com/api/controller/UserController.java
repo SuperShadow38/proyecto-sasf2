@@ -19,7 +19,7 @@ import com.api.model.User;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
     private final UserService  userService;
 
@@ -29,56 +29,49 @@ public class UserController {
 
     }
 
-    //obtener tdos los usuarios
      @GetMapping
     public List<User> getAllUsers(){
         return userService.getAllUsers();
         }
 
-    // Obtener un usuario por ID
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userService.getUserId(id);
         if (user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK); // Devuelve 200 OK y el usuario encontrado
+            return new ResponseEntity<>(user, HttpStatus.OK); 
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Devuelve 404 Not Found si no se encuentra el usuario
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
     }
 
-     // Guardar un nuevo usuario
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED); // Devuelve 201 Created y el usuario creado
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED); 
     }
-
-     // Editar un usuario por ID
     @PutMapping("/{id}")
     public ResponseEntity<User> editUser(@PathVariable Long id, @RequestBody User updatedUser) {
         User user = userService.getUserId(id);
         if (user != null) {
-            updatedUser.setId(id); // Aseguramos que el ID del usuario coincida con el ID proporcionado en la URL
+            updatedUser.setId(id); 
             User savedUser = userService.saveUser(updatedUser);
-            return new ResponseEntity<>(savedUser, HttpStatus.OK); // Devuelve 200 OK y el usuario actualizado
+            return new ResponseEntity<>(savedUser, HttpStatus.OK); 
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Devuelve 404 Not Found si no se encuentra el usuario
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-     // Eliminar un usuario por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         User user = userService.getUserId(id);
         if (user != null) {
             userService.deletUser(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Devuelve 204 No Content si el usuario fue eliminado
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Devuelve 404 Not Found si no se encuentra el usuario
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    // Buscar usuarios por palabra clave
     @GetMapping("/search")
     public List<User> searchUsersByKeyword(@RequestParam("keyword") String keyword) {
         return userService.searchUsersByKeyword(keyword);
