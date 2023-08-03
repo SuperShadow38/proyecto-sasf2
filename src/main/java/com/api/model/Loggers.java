@@ -1,8 +1,12 @@
 package com.api.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
@@ -30,4 +34,7 @@ public class Loggers {
 
     @Column(name = "contraseña")
     private String contraseña_usuarios;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<LoggersRoles> roles;
 }
