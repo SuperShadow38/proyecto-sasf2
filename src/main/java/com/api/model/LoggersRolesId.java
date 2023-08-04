@@ -3,8 +3,6 @@ package com.api.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Id;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

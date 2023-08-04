@@ -2,8 +2,6 @@ package com.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,6 +29,8 @@ public class UserSecurityService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Loggers loggers = this.userSecurityRepository.findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User" + username + "not found."));
+
+        System.out.println(loggers);
 
             
         String[] roles = loggers.getRoles().stream().map(LoggersRoles::getRol).toArray(String[]::new);

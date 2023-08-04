@@ -37,4 +37,11 @@ public class Loggers {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<LoggersRoles> roles;
+
+    @Override
+    public String toString() {
+        return "Loggers [usuario=" + usuario + ", email_usuarios=" + email_usuarios + ", contraseña_usuarios="
+                + contraseña_usuarios + ", roles=" + roles + "]";
+    }
+    
 }
