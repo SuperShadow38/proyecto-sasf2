@@ -52,6 +52,7 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED); 
     }
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<User> editUser(@PathVariable Long id, @RequestBody User updatedUser) {
         User user = userService.getUserId(id);
         if (user != null) {
@@ -64,6 +65,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         User user = userService.getUserId(id);
         if (user != null) {
