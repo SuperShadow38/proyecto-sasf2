@@ -20,6 +20,7 @@ public class AuditUsername implements AuditorAware<String> {
         }
 
         String username = authentication.getName();
+        System.out.println("Current Auditor: " + username);
         return Optional.of(username);
     }
     

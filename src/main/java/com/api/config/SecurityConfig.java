@@ -4,6 +4,7 @@ package com.api.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
+@EnableJpaAuditing
 public class SecurityConfig {
     private final JwtFilter jwtFilter;
 
